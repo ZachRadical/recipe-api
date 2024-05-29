@@ -32,3 +32,10 @@ type Ingredient struct {
 	Unit		string			`json:"unit"`
 	ComponentID	int				`json:"component_id"`
 }
+
+type Product struct {
+	ID			int				`json:"id"`
+	Name		string			`json:"name"`
+	Size		float64			`json:"size"`
+	Price		float64			`json:"price"`
+}

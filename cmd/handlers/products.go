@@ -9,17 +9,18 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func CreateRecipe(c echo.Context) error {
-	recipe := models.Recipe{}
-	c.Bind(&recipe)
-	newRecipe, err := repos.CreateRecipe(recipe)
+
+func CreateProduct(c echo.Context) error {
+	product := models.Product{}
+	c.Bind(&product)
+	newProduct, err := repos.CreateProduct(product)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
-	return c.JSON(http.StatusCreated, newRecipe)
+	return c.JSON(http.StatusCreated, newProduct)
 }
 
-func UpdateRecipe(c echo.Context) error {
+func UpdateProduct(c echo.Context) error {
 	id := c.Param("id")
 
 	idInt, err := strconv.Atoi(id)
@@ -28,17 +29,17 @@ func UpdateRecipe(c echo.Context) error {
 		err.Error())
 	}
 
-	recipe := models.Recipe{}
-	c.Bind(&recipe)
-	updatedRecipe, err := repos.UpdateRecipe(recipe, idInt)
+	product := models.Product{}
+	c.Bind(&product)
+	updatedProduct, err := repos.UpdateProduct(product, idInt)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	return c.JSON(http.StatusOK, updatedRecipe)
+	return c.JSON(http.StatusOK, updatedProduct)
 }
 
-func GetRecipe(c echo.Context) error {
+func GetProduct(c echo.Context) error {
 	id := c.Param("id")
 	
 	idInt, err := strconv.Atoi(id)
@@ -47,18 +48,18 @@ func GetRecipe(c echo.Context) error {
 		err.Error())
 	}
 
-	recipe := models.Recipe{}
-	c.Bind(&recipe)
-	desiredRecipe, err := repos.GetRecipe(recipe, idInt)
+	product := models.Product{}
+	c.Bind(&product)
+	desiredProduct, err := repos.GetProduct(product, idInt)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	return c.JSON(http.StatusOK, desiredRecipe)
+	return c.JSON(http.StatusOK, desiredProduct)
 }
 
-// func GetAllRecipesByUser(c echo.Context) error {
+// func GetAllProductsByUser(c echo.Context) error {
 // 	id := c.Param("user_id")
 
 // 	idInt, err := strconv.Atoi(id)
@@ -67,13 +68,13 @@ func GetRecipe(c echo.Context) error {
 // 		err.Error())
 // 	}
 
-// 	recipes := []models.Recipe{}
-// 	c.Bind(&recipes)
-// 	recipeList, err := repos.GetAllRecipesByUser(idInt)
+// 	products := []models.Product{}
+// 	c.Bind(&products)
+// 	productList, err := repos.GetAllProductsByUser(idInt)
 
 // 	if err != nil {
 // 		return c.JSON(http.StatusInternalServerError, err.Error())
 // 	}
 
-// 	return c.JSON(http.StatusOK, recipeList)
+// 	return c.JSON(http.StatusOK, productList)
 // }
