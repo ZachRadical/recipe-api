@@ -9,7 +9,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-
 func CreateProduct(c echo.Context) error {
 	product := models.Product{}
 	c.Bind(&product)

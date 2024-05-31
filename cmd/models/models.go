@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type User struct {
 	ID			int				`json:"id"`
@@ -9,6 +11,18 @@ type User struct {
 	Password	string			`json:"password"`
 	CreatedAt	time.Time		`json:"created_at"`
 	UpdatedAt	time.Time		`json:"updated_at"`
+}
+
+type LoginRequestBody struct {
+	Email 		string			`json:"email"`
+	Password	string			`json:"password"`
+}
+
+type RegisterRequestBody struct {
+	Username	string			`json:"username"`
+	Email 		string			`json:"email"`
+	Password	string			`json:"password"`
+	
 }
 
 type Recipe struct {

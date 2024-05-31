@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"nomcom-api/cmd/handlers"
 	"nomcom-api/cmd/database"
+	"nomcom-api/cmd/services"
 
 )
 func main() {
@@ -11,6 +12,9 @@ func main() {
 	e.GET("/", handlers.Home)
 
 	database.InitDB()
+
+	e.POST("/login", handlers.LoginUser)
+	e.POST("/register", handlers.RegisterUser)
 
 	e.POST("/users", handlers.CreateUser)
 	e.POST("/recipes", handlers.CreateRecipe)
@@ -27,6 +31,6 @@ func main() {
 	e.GET("/components/:id", handlers.GetComponent)
 	e.GET("/ingredients/:id", handlers.GetIngredient)
 
-	e.Use(handlers.LogRequest)
+	e.Use(services.LogRequest)
 	e.Logger.Fatal(e.Start(":8080"))
 }
